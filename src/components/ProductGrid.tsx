@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ExternalLink, Loader2, ShoppingBag } from "lucide-react";
 import { useProductFilter } from "@/hooks/useProductFilter";
 
@@ -49,7 +49,7 @@ export function ProductGrid({ theme, filterState }: ProductGridProps) {
       {/* Smooth Expansion - Simple Fade for Grid updates */}
       <div className="min-h-[600px] relative">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={`${debouncedSearchQuery}-${categoryFilter}-${sortBy}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -80,9 +80,6 @@ export function ProductGrid({ theme, filterState }: ProductGridProps) {
                     <ExternalLink className="w-3.5 h-3.5 text-white" />
                   </div>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <span className="text-[9px] font-black text-blue-500 uppercase tracking-widest">
-                      {product.type}
-                    </span>
                     <h3 className="font-black text-sm mt-1 line-clamp-2 text-white leading-[1.15]">
                       {product.name}
                     </h3>
@@ -95,7 +92,7 @@ export function ProductGrid({ theme, filterState }: ProductGridProps) {
                 </div>
               </a>
             ))}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 
@@ -104,13 +101,13 @@ export function ProductGrid({ theme, filterState }: ProductGridProps) {
         {hasMoreProducts && (
           <div ref={loadMoreRef} className="w-full flex justify-center">
             {isLoading && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 className={`flex items-center gap-2 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${isDarkMode ? "bg-white/5 text-gray-500" : "bg-gray-100 text-gray-400"}`}
               >
                 <Loader2 className="w-4 h-4 animate-spin" /> More Products...
-              </motion.div>
+              </m.div>
             )}
           </div>
         )}

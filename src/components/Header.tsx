@@ -1,9 +1,4 @@
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { m, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 import { profile } from "@/config/data";
 import type { TabType } from "@/types";
@@ -30,7 +25,7 @@ export function Header({
   const isDarkMode = theme === "dark";
 
   return (
-    <motion.header
+    <m.header
       style={{
         opacity: isDirect ? 1 : headerOpacity,
         y: isDirect ? 0 : headerY,
@@ -103,7 +98,7 @@ export function Header({
             }`}
           >
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={isDarkMode ? "dark" : "light"}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -115,11 +110,11 @@ export function Header({
                 ) : (
                   <Moon className="w-4 h-4" />
                 )}
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </button>
         </div>
       </div>
-    </motion.header>
+    </m.header>
   );
 }

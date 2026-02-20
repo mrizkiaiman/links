@@ -1,14 +1,17 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Youtube, Instagram, Music2 } from "lucide-react";
+import { m, useScroll, useTransform } from "framer-motion";
+import { Linkedin, Instagram, Music2, Globe, Mail, Github } from "lucide-react";
 import { profile } from "@/config/data";
 
 const iconMap: Record<
   string,
   React.ComponentType<{ className?: string; style?: React.CSSProperties }>
 > = {
-  Youtube,
+  Linkedin,
   Instagram,
   Music2,
+  Globe,
+  Mail,
+  Github,
 };
 
 interface ProfileSectionProps {
@@ -24,7 +27,7 @@ export function ProfileSection({ theme }: ProfileSectionProps) {
 
   return (
     <section className="text-center mb-10 pt-4">
-      <motion.div
+      <m.div
         style={{ scale: profileScale, opacity: profileOpacity }}
         className="relative w-full h-32 rounded-[2rem] overflow-hidden mb-6 shadow-2xl"
       >
@@ -36,7 +39,7 @@ export function ProfileSection({ theme }: ProfileSectionProps) {
         <div
           className={`absolute inset-0 bg-gradient-to-t ${isDarkMode ? "from-[#0a0a0a]" : "from-gray-50"} via-transparent to-transparent`}
         />
-      </motion.div>
+      </m.div>
 
       <div className="relative -mt-16 mb-4 flex justify-center">
         <div
@@ -72,25 +75,21 @@ export function ProfileSection({ theme }: ProfileSectionProps) {
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${isDarkMode ? "bg-white/5 hover:bg-white/10" : "bg-gray-100 hover:bg-gray-200 shadow-sm"}`}
+              className={`w-11 h-11 rounded-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${isDarkMode ? "bg-zinc-800 border border-zinc-700 hover:bg-zinc-700" : "bg-white border border-gray-200 shadow-sm hover:bg-gray-50"}`}
             >
-              <Icon className="w-5 h-5" style={{ color: social.color }} />
+              <Icon
+                className="w-5 h-5"
+                style={{
+                  color:
+                    isDarkMode && social.color === "#000000"
+                      ? "#FFFFFF"
+                      : social.color,
+                }}
+              />
             </a>
           );
         })}
       </div>
-
-      <p
-        className={`text-sm leading-relaxed max-w-sm mx-auto font-medium ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}
-      >
-        {profile.bio}
-        <br />
-        <span
-          className={`text-[10px] mt-3 block font-black uppercase tracking-widest opacity-40`}
-        >
-          Collab: {profile.email}
-        </span>
-      </p>
     </section>
   );
 }
