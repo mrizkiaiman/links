@@ -1,5 +1,6 @@
 import { Link2 } from "lucide-react";
 import { links } from "@/config/data";
+import { cn } from "@/lib/utils";
 
 interface LinksSectionProps {
   theme: "light" | "dark";
@@ -22,7 +23,10 @@ export function LinksSection({ theme }: LinksSectionProps) {
             <img
               src={link.image}
               alt={link.title}
-              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-50"
+              className={cn(
+                "w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110",
+                isDarkMode ? "opacity-50" : "",
+              )}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
             <div className="absolute top-5 left-5 w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl flex items-center justify-center">
